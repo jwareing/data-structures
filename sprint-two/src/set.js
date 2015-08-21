@@ -7,9 +7,11 @@ var Set = function(){
 var setPrototype = {};
 
 setPrototype.add = function(item){
+  this[item]=item;
 };
 
 setPrototype.contains = function(item){
+  return _.has(this,item);
 };
 
 setPrototype.remove = function(item){
