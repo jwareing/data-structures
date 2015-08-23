@@ -73,7 +73,6 @@ HashTable.prototype.remove = function(k){
     this._storage = LimitedArray(this._limit);
     var context = this;
     _.each(temp, function(keyValPair) {
-      debugger
       context.insert.call(context, keyValPair[0], keyValPair[1]);
     });
   }    

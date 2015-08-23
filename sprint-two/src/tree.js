@@ -1,7 +1,8 @@
-var Tree = function(value){
+var Tree = function(value,parent){
   var newTree = {};
   newTree.value = value;
   newTree.children = [];
+  newTree.parent = parent || null;
   _.extend(newTree,treeMethods);
   return newTree;
 };
@@ -14,7 +15,7 @@ var Tree = function(value){
 var treeMethods = {};
 
 treeMethods.addChild = function(value){
-  this.children.push(Tree(value));
+  this.children.push(Tree(value,this));
 };
 
 treeMethods.contains = function(target){
@@ -38,6 +39,13 @@ treeMethods.contains = function(target){
   return nodeSearcher(this.children);
 };
 
+treeMethods.removeFromParent = function(){
+  var oldParent = this.parent;
+  var node = this;
+  this.parent.children.splice(_.indexOf(oldParent.children,this),1);
+  //
+  this.parent = null;
+};
 
 /*
  * Complexity: What is the time complexity of the above functions?

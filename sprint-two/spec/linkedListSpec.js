@@ -53,8 +53,19 @@ describe('linkedList', function() {
 
   it('should contain a new head value', function(){
     linkedList.addToTail(4);
+    expect (linkedList.head.value).to.equal(4);
+    expect (linkedList.tail.value).to.equal(4);
     linkedList.addToHead(5);
+    expect (linkedList.head.value).to.equal(5);
+    expect (linkedList.tail.value).to.equal(4);
     expect(linkedList.removeHead()).to.equal(5);
+    
+  });
+
+  it('should not contain a value that was removed, even if list had only one value', function(){
+    linkedList.addToTail(4);
+    expect(linkedList.removeHead()).to.equal(4);
+    expect(linkedList.contains(4)).to.equal(false);
   });
 
   it('should remove and return a tail value', function(){

@@ -5,7 +5,7 @@ var LinkedList = function(){
 
   list.addToTail = function(value){
     var newTail = Node(value);
-    if (this.tail === null){
+    if (!this.tail){
       this.tail = newTail;
       this.head = newTail;
     }
@@ -20,12 +20,15 @@ var LinkedList = function(){
     var oldHead = this.head;
     if (this.head.next !== null){
       this.head.next.prev = null;
-      this.head = this.head.next;
-    }
+    };
+    this.head = this.head.next;
     return oldHead.value;
   };
 
   list.contains = function(target){
+    if (!this.head){
+      return false;
+    }
     var nodeChecker = function(node){
       if(node.value === target){
         return true;
@@ -35,7 +38,15 @@ var LinkedList = function(){
       }
       return false;
     }
+    
     return nodeChecker(list.head);
+
+
+    // Recursively traverse the list
+      // Reassign the current value to the next value at each step
+      // Terminate recursion when the .next value === null - delete this object
+
+
   };
 
   list.removeTail = function () {
